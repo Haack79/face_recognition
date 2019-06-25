@@ -32,7 +32,7 @@ class Register extends React.Component {
         })
             .then(response => response.json())
             .then(user => {
-                if (user) {
+                if (user.id) {
                     this.props.loadUser(user)
                     this.props.onRouteChange('home');
                 }
@@ -74,7 +74,7 @@ class Register extends React.Component {
                                     type="password" 
                                     name="password"  
                                     id="password" 
-                                    onChange={this.onNameChange}
+                                    onChange={this.onPasswordChange}
                                 />
                             </div>
                         </fieldset>

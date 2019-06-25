@@ -15,9 +15,9 @@ class Signin extends React.Component {
         this.setState({signInPassword: event.target.value})
     }
     onSubmitSignIn = () => {
-        // console.log(this.state);
+        console.log(this.state);
         fetch('http://localhost:3000/signin', {
-            method: 'POST',
+            method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 email: this.state.signInEmail,
@@ -25,8 +25,9 @@ class Signin extends React.Component {
             })
         })
             .then(response => response.json())
-            .then(data => {
-                if (data === 'success') {
+            .then(user => {
+                if (user.id) {
+                    this.props.loadUser(user)
                     this.props.onRouteChange('home');
                 }
             })
